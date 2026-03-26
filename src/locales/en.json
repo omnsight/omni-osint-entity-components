@@ -1,0 +1,75 @@
+{
+  "source": {
+    "type": {
+      "news": "News",
+      "website": "Website",
+      "social-media": "Social Media",
+      "book": "Book",
+      "paper": "Paper"
+    },
+    "name": "Name",
+    "description": "Description"
+  },
+  "person": {
+    "type": {
+      "professional": "Professional",
+      "gov-official": "Government Official",
+      "school-personel": "School Personnel"
+    },
+    "name": "Name",
+    "role": "Role",
+    "aliases": "Aliases"
+  },
+  "organization": {
+    "type": {
+      "company": "Company",
+      "government": "Government",
+      "military": "Military",
+      "manufacturing": "Manufacturing",
+      "agriculture": "Agriculture",
+      "semi-conductor": "Semi-conductor",
+      "technology": "Technology"
+    },
+    "name": "Name"
+  },
+  "website": {
+    "type": {
+      "company": "Company",
+      "government": "Government",
+      "news": "News",
+      "forum": "Forum"
+    },
+    "title": "Title",
+    "description": "Description"
+  },
+  "event": {
+    "type": {
+      "announcement": "Announcement",
+      "conversation": "Conversation",
+      "exchange": "Exchange",
+      "oil": "Oil",
+      "trade": "Trade",
+      "supplychain-risk": "Supply Chain Risk",
+      "ship": "Ship",
+      "truck": "Truck",
+      "train": "Train",
+      "crime": "Crime",
+      "shot": "Shot",
+      "bomb": "Bomb",
+      "missile": "Missile",
+      "plane": "Plane",
+      "naval": "Naval",
+      "tank": "Tank",
+      "infantry": "Infantry",
+      "intelligence": "Intelligence"
+    },
+    "title": "Title",
+    "description": "Description"
+  },
+  "tooltip": {
+    "relation": "Related",
+    "confidence": "Confidence",
+    "createdDate": "Created Date",
+    "updatedDate": "Updated Date"
+  }
+}

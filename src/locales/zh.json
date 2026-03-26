@@ -1,0 +1,76 @@
+{
+  "source": {
+    "type": {
+      "news": "新闻",
+      "website": "网站",
+      "social-media": "社交媒体",
+      "book": "书籍",
+      "paper": "文章"
+    },
+    "name": "名称",
+    "description": "描述"
+  },
+  "person": {
+    "type": {
+      "professional": "专业人士",
+      "gov-official": "政府人员",
+      "school-personel": "学校人员"
+    },
+    "name": "姓名",
+    "role": "角色",
+    "aliases": "别名"
+  },
+  "organization": {
+    "type": {
+      "company": "公司",
+      "government": "政府",
+      "military": "军队",
+      "manufacturing": "制造业",
+      "agriculture": "农业",
+      "semi-conductor": "半导体",
+      "technology": "科技"
+    },
+    "name": "名称"
+  },
+  "website": {
+    "type": {
+      "company": "公司",
+      "government": "政府",
+      "news": "新闻",
+      "forum": "论坛"
+    },
+    "title": "标题",
+    "description": "描述"
+  },
+  "event": {
+    "type": {
+      "announcement": "公告",
+      "conversation": "对话",
+      "exchange": "投资交易",
+      "oil": "石油",
+      "trade": "贸易",
+      "supplychain-risk": "供应链风险",
+      "ship": "航运",
+      "truck": "陆运",
+      "train": "轨道交通",
+      "crime": "犯罪",
+      "shot": "枪击",
+      "bomb": "爆炸",
+      "missile": "导弹",
+      "plane": "飞机",
+      "naval": "海军",
+      "tank": "坦克",
+      "infantry": "步兵",
+      "intelligence": "情报"
+    },
+    "title": "标题",
+    "description": "描述"
+  
+  },
+  "tooltip": {
+    "relation": "相关",
+    "confidence": "置信度",
+    "createdDate": "创建日期",
+    "updatedDate": "更新日期"
+  }
+}
