@@ -1,0 +1,82 @@
+{
+  "name": "@omnsight/osint-entity-components",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./avatars": {
+      "import": "./src/avatars/index.ts",
+      "types": "./src/avatars/index.ts"
+    },
+    "./cards": {
+      "import": "./src/cards/index.ts",
+      "types": "./src/cards/index.ts"
+    },
+    "./icons": {
+      "import": "./src/icons/index.ts",
+      "types": "./src/icons/index.ts"
+    },
+    "./locales/en": {
+      "import": "./src/locales/en.json"
+    },
+    "./locales/zh": {
+      "import": "./src/locales/zh.json"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "sync": "node scripts/sync-icons.mjs",
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules package-lock.json dist"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@mantine/core": "^8.3.18",
+    "@mantine/hooks": "^8.3.18",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "omni-osint-crud-client": "latest",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-i18next": "^16.6.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@iconify/utils": "^3.1.0",
+    "@svgr/core": "^8.1.0",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "glob": "^13.0.6",
+    "globals": "^17.4.0",
+    "postcss": "^8.5.6",
+    "postcss-preset-mantine": "^1.18.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.57.0",
+    "vite": "^8.0.1"
+  }
+}
