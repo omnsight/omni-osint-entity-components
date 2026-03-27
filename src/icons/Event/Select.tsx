@@ -4,16 +4,45 @@ import { Group, Select, ColorInput } from "@mantine/core";
 import { ICON_OPTIONS } from "./icons";
 import { EventIcon } from "./Icon";
 
-interface EventIconSelectProps {
-  value: Event;
-  onChange: (value: Event) => void;
+interface EventIconSelectorProps {
+  data: Event;
+  value?: string | null;
+  onChange: (value: string | null) => void;
 }
 
-export const EventIconSelect: React.FC<EventIconSelectProps> = ({
+export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
+  data,
   value,
   onChange,
 }) => {
   const { t } = useTranslation();
+
+  const translatedOptions = ICON_OPTIONS.map((option) => ({
+    ...option,
+    label: t(`event.type.${option.label}`),
+  }));
+
+  return (
+    <Select
+      leftSection={<EventIcon event={data} />}
+      defaultValue={translatedOptions[0].value}
+      value={value}
+      onChange={onChange}
+      data={translatedOptions}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface EventColorSelectorProps {
+  value?: string | null;
+  onChange: (value: string | null) => void;
+}
+
+export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
+  value,
+  onChange,
+}) => {
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -24,37 +53,46 @@ export const EventIconSelect: React.FC<EventIconSelectProps> = ({
     "#7950f2",
   ];
 
+  return (
+    <ColorInput
+      value={value || colors[0]}
+      onChange={onChange}
+      swatches={colors}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface EventIconSelectProps {
+  value: Event;
+  onChange: (value: Event) => void;
+}
+
+export const EventIconSelect: React.FC<EventIconSelectProps> = ({
+  value,
+  onChange,
+}) => {
   const handleTypeChange = (type: string | null) => {
     onChange({ ...value, type: type || undefined });
   };
 
-  const handleColorChange = (color: string) => {
+  const handleColorChange = (color: string | null) => {
     onChange({
       ...value,
       attributes: { ...(value.attributes || {}), icon_color: color },
     });
   };
 
-  const translatedOptions = ICON_OPTIONS.map((option) => ({
-    ...option,
-    label: t(`event.type.${option.label}`),
-  }));
-
   return (
     <Group>
-      <Select
-        leftSection={<EventIcon event={value} />}
-        defaultValue={translatedOptions[0].value}
+      <EventIconSelector
+        data={value}
         value={value.type}
         onChange={handleTypeChange}
-        data={translatedOptions}
-        style={{ flex: 1 }}
       />
-      <ColorInput
-        value={String((value.attributes || {}).icon_color || colors[0])}
+      <EventColorSelector 
+        value={String(value.attributes?.icon_color)}
         onChange={handleColorChange}
-        swatches={colors}
-        style={{ flex: 1 }}
       />
     </Group>
   );

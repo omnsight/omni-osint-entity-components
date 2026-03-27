@@ -4,16 +4,42 @@ import { Group, Select, ColorInput } from "@mantine/core";
 import { ICON_OPTIONS } from "./icons";
 import { OrganizationIcon } from "./Icon";
 
-interface OrganizationIconSelectProps {
-  value: Organization;
-  onChange: (value: Organization) => void;
+interface OrganizationIconSelectorProps {
+  data: Organization;
+  value?: string | null;
+  onChange: (value: string | null) => void;
 }
 
-export const OrganizationIconSelect: React.FC<OrganizationIconSelectProps> = ({
-  value,
-  onChange,
-}) => {
+export const OrganizationIconSelector: React.FC<
+  OrganizationIconSelectorProps
+> = ({ data, value, onChange }) => {
   const { t } = useTranslation();
+
+  const translatedOptions = ICON_OPTIONS.map((option) => ({
+    ...option,
+    label: t(`organization.type.${option.label}`),
+  }));
+
+  return (
+    <Select
+      leftSection={<OrganizationIcon organization={data} />}
+      defaultValue={translatedOptions[0].value}
+      value={value}
+      onChange={onChange}
+      data={translatedOptions}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface OrganizationColorSelectorProps {
+  value?: string | null;
+  onChange: (value: string | null) => void;
+}
+
+export const OrganizationColorSelector: React.FC<
+  OrganizationColorSelectorProps
+> = ({ value, onChange }) => {
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -24,37 +50,46 @@ export const OrganizationIconSelect: React.FC<OrganizationIconSelectProps> = ({
     "#7950f2",
   ];
 
+  return (
+    <ColorInput
+      value={value || colors[0]}
+      onChange={onChange}
+      swatches={colors}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface OrganizationIconSelectProps {
+  value: Organization;
+  onChange: (value: Organization) => void;
+}
+
+export const OrganizationIconSelect: React.FC<OrganizationIconSelectProps> = ({
+  value,
+  onChange,
+}) => {
   const handleTypeChange = (type: string | null) => {
     onChange({ ...value, type: type || undefined });
   };
 
-  const handleColorChange = (color: string) => {
+  const handleColorChange = (color: string | null) => {
     onChange({
       ...value,
       attributes: { ...(value.attributes || {}), icon_color: color },
     });
   };
 
-  const translatedOptions = ICON_OPTIONS.map((option) => ({
-    ...option,
-    label: t(`organization.type.${option.label}`),
-  }));
-
   return (
     <Group>
-      <Select
-        leftSection={<OrganizationIcon organization={value} />}
-        defaultValue={translatedOptions[0].value}
+      <OrganizationIconSelector
+        data={value}
         value={value.type}
         onChange={handleTypeChange}
-        data={translatedOptions}
-        style={{ flex: 1 }}
       />
-      <ColorInput
-        value={String((value.attributes || {}).icon_color || colors[0])}
+      <OrganizationColorSelector
+        value={String(value.attributes?.icon_color)}
         onChange={handleColorChange}
-        swatches={colors}
-        style={{ flex: 1 }}
       />
     </Group>
   );
