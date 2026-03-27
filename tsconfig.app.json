@@ -19,10 +19,7 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "resolveJsonModule": true
   },
   "include": ["src"]
 }

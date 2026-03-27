@@ -1,8 +1,9 @@
-import { IconUitSocialMediaLogo } from '@/assets/icons/generated/uit-social-media-logo';
-import { IconStreamlineCyberNewspaper2 } from '@/assets/icons/generated/streamline-cyber-newspaper-2';
-import { IconBasilDocumentSolid } from '@/assets/icons/generated/basil-document-solid';
-import { IconBoxiconsBook } from '@/assets/icons/generated/boxicons-book';
-import { IconGgWebsite } from '@/assets/icons/generated/gg-website';
+import { IconBasilDocumentSolid } from '../../assets/icons/generated/basil-document-solid';
+import { IconBoxiconsBook } from '../../assets/icons/generated/boxicons-book';
+import { IconUitSocialMediaLogo } from '../../assets/icons/generated/uit-social-media-logo';
+import { IconGgWebsite } from '../../assets/icons/generated/gg-website';
+import { IconStreamlineCyberNewspaper2 } from '../../assets/icons/generated/streamline-cyber-newspaper-2';
+
 
 interface IconOption {
   value: string;

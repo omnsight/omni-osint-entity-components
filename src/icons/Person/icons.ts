@@ -1,6 +1,8 @@
-import { IconMdiAccountSchool } from '@/assets/icons/generated/mdi-account-school';
-import { IconMdiAccountTieHat } from '@/assets/icons/generated/mdi-account-tie-hat';
-import { IconMdiAccountTie } from '@/assets/icons/generated/mdi-account-tie';
+import { IconMdiAccountSchool } from '../../assets/icons/generated/mdi-account-school';
+import { IconMdiAccountTieHat } from '../../assets/icons/generated/mdi-account-tie-hat';
+import { IconMdiAccountTie } from '../../assets/icons/generated/mdi-account-tie';
+
+
 interface IconOption {
   value: string;
   label: string;

@@ -109,7 +109,7 @@ async function processFiles() {
       const componentName = await generateIconComponent(iconIdentifier);
       
       if (componentName) {
-        const importPath = `@/assets/icons/generated/${iconIdentifier.replace(':', '-')}`;
+        const importPath = `../../assets/icons/generated/${iconIdentifier.replace(':', '-')}`;
         const importStatement = `import { ${componentName} } from '${importPath}';\n`;
 
         // 2. Replace the line: icon: undefined, // icon: mdi:tank -> icon: IconMdiTank, // icon: mdi:tank
