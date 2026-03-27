@@ -3,6 +3,7 @@ import {
   Badge,
   Group,
   Paper,
+  ScrollArea,
   Stack,
   Text,
   Title,
@@ -32,7 +33,7 @@ export const WebsiteCard: React.FC<Props> = ({
       <Group justify="space-between" wrap="nowrap" align="flex-start">
         <Stack gap={0}>
           <Group>
-            <Title>{website.title || t("website.title")}</Title>
+            <Title order={2}>{website.title || t("website.title")}</Title>
             {website.url && (
               <ActionIcon
                 variant="subtle"
@@ -45,9 +46,11 @@ export const WebsiteCard: React.FC<Props> = ({
               </ActionIcon>
             )}
           </Group>
-          <Text truncate="end">
-            {website.description || t("website.description")}
-          </Text>
+          <ScrollArea h={50} type="auto" offsetScrollbars>
+            <Text>
+              {website.description || t("website.description")}
+            </Text>
+          </ScrollArea>
           {website.tags && (
             <Group gap="xs" mt="xs">
               {website.tags.map((tag) => (

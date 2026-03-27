@@ -22,7 +22,7 @@ export const PersonCard: React.FC<Props> = ({
     <Paper withBorder={withBorder} p="xs" bg={background}>
       <Group justify="space-between" wrap="nowrap" align="flex-start">
         <Stack gap={0}>
-          <Title>{person.name || t("person.name")}</Title>
+          <Title order={2}>{person.name || t("person.name")}</Title>
           {person.role && (
             <Text c="dimmed">{person.role || t("person.role")}</Text>
           )}

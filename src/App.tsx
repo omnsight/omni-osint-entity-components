@@ -42,12 +42,14 @@ import type {
   Website,
   Relation,
 } from "omni-osint-crud-client";
+import type { MonitoringSource } from "omni-monitoring-client";
 import {
   EventCard,
   OrganizationCard,
   PersonCard,
   SourceCard,
   WebsiteCard,
+  MonitoringSourceCard,
 } from "./cards";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
@@ -87,6 +89,13 @@ function App() {
     description: "An example website.",
     tags: ["website", "example"],
   });
+  const [monitoringSource] = useState<MonitoringSource>({
+    name: "Test Monitoring Source",
+    description:
+      "This is a test description for the monitoring source card. It should truncate after a certain point to avoid overflowing the card.",
+    reliability: 75,
+    owner: "test-owner",
+  });
   const [relation] = useState<Relation>({
     _id: "relation-1",
     _from: "person-1",
@@ -112,7 +121,13 @@ function App() {
         >
           Toggle Language
         </Button>
-        <Button onClick={() => setColorScheme(colorScheme === "dark" ? "light" : "dark")}>Toggle Theme</Button>
+        <Button
+          onClick={() =>
+            setColorScheme(colorScheme === "dark" ? "light" : "dark")
+          }
+        >
+          Toggle Theme
+        </Button>
       </Group>
       <ScrollArea style={{ height: "100vh" }}>
         <SimpleGrid
@@ -233,8 +248,13 @@ function App() {
                 <OrganizationCard organization={{}} />
                 <SourceCard source={{}} />
                 <WebsiteCard website={{}} />
+                <MonitoringSourceCard monitoringSource={{ owner: "" }} />
               </Stack>
             </ScrollArea>
+          </Card>
+
+          <Card withBorder style={cardStyle}>
+            <MonitoringSourceCard monitoringSource={monitoringSource} />
           </Card>
         </SimpleGrid>
       </ScrollArea>
