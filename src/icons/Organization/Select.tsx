@@ -8,11 +8,12 @@ interface OrganizationIconSelectorProps {
   data: Organization;
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const OrganizationIconSelector: React.FC<
   OrganizationIconSelectorProps
-> = ({ data, value, onChange }) => {
+> = ({ data, value, onChange, error }) => {
   const { t } = useTranslation();
 
   const translatedOptions = ICON_OPTIONS.map((option) => ({
@@ -27,7 +28,7 @@ export const OrganizationIconSelector: React.FC<
       value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };
@@ -35,11 +36,12 @@ export const OrganizationIconSelector: React.FC<
 interface OrganizationColorSelectorProps {
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const OrganizationColorSelector: React.FC<
   OrganizationColorSelectorProps
-> = ({ value, onChange }) => {
+> = ({ value, onChange, error }) => {
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -56,7 +58,7 @@ export const OrganizationColorSelector: React.FC<
       value={value ?? ""}
       onChange={onChange}
       swatches={colors}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };

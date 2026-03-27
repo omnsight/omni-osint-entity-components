@@ -8,12 +8,14 @@ interface SourceIconSelectorProps {
   data: Source;
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
   data,
   value,
   onChange,
+  error,
 }) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };
@@ -37,11 +39,13 @@ export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
 interface SourceColorSelectorProps {
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
   value,
   onChange,
+  error,
 }) => {
   const colors = [
     "#ababab",
@@ -59,7 +63,7 @@ export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       swatches={colors}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };

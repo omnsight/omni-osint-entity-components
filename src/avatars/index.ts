@@ -8,5 +8,5 @@ export { EmptyAvatar } from './EmptyAvatar';
 export { EventAvatar } from './EventAvatar';
 export { OrganizationAvatar } from './OrganizationAvatar';
 export { PersonAvatar } from './PersonAvatar';
-export { SourceAvatar, SourceAvatarRow } from './SourceAvatar';
+export { SourceAvatar, SourceAvatarRow, SourceLink } from './SourceAvatar';
 export { WebsiteAvatar } from './WebsiteAvatar';
