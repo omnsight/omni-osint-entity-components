@@ -26,7 +26,7 @@ export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
     <Select
       leftSection={<EventIcon event={data} />}
       defaultValue={translatedOptions[0].value}
-      value={value}
+      value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
       style={{ flex: 1 }}
@@ -55,7 +55,8 @@ export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
 
   return (
     <ColorInput
-      value={value || colors[0]}
+      defaultValue={colors[0]}
+      value={value ?? ""}
       onChange={onChange}
       swatches={colors}
       style={{ flex: 1 }}
@@ -90,7 +91,7 @@ export const EventIconSelect: React.FC<EventIconSelectProps> = ({
         value={value.type}
         onChange={handleTypeChange}
       />
-      <EventColorSelector 
+      <EventColorSelector
         value={String(value.attributes?.icon_color)}
         onChange={handleColorChange}
       />

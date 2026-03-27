@@ -26,7 +26,7 @@ export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
     <Select
       leftSection={<WebsiteIcon website={data} />}
       defaultValue={translatedOptions[0].value}
-      value={value}
+      value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
       style={{ flex: 1 }}
@@ -55,7 +55,8 @@ export const WebsiteColorSelector: React.FC<WebsiteColorSelectorProps> = ({
 
   return (
     <ColorInput
-      value={value || colors[0]}
+      defaultValue={colors[0]}
+      value={value ?? ""}
       onChange={onChange}
       swatches={colors}
       style={{ flex: 1 }}

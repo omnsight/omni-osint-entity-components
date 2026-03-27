@@ -24,7 +24,7 @@ export const OrganizationIconSelector: React.FC<
     <Select
       leftSection={<OrganizationIcon organization={data} />}
       defaultValue={translatedOptions[0].value}
-      value={value}
+      value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
       style={{ flex: 1 }}
@@ -52,7 +52,8 @@ export const OrganizationColorSelector: React.FC<
 
   return (
     <ColorInput
-      value={value || colors[0]}
+      defaultValue={colors[0]}
+      value={value ?? ""}
       onChange={onChange}
       swatches={colors}
       style={{ flex: 1 }}
