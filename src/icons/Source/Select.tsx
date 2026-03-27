@@ -4,16 +4,45 @@ import { Group, Select, ColorInput } from "@mantine/core";
 import { ICON_OPTIONS } from "./icons";
 import { SourceIcon } from "./Icon";
 
-interface SourceIconSelectProps {
-  value: Source;
-  onChange: (value: Source) => void;
+interface SourceIconSelectorProps {
+  data: Source;
+  value?: string | null;
+  onChange: (value: string | null) => void;
 }
 
-export const SourceIconSelect: React.FC<SourceIconSelectProps> = ({
+export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
+  data,
   value,
   onChange,
 }) => {
   const { t } = useTranslation();
+
+  const translatedOptions = ICON_OPTIONS.map((option) => ({
+    ...option,
+    label: t(`source.type.${option.label}`),
+  }));
+
+  return (
+    <Select
+      leftSection={<SourceIcon source={data} />}
+      defaultValue={translatedOptions[0].value}
+      value={value}
+      onChange={onChange}
+      data={translatedOptions}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface SourceColorSelectorProps {
+  value?: string | null;
+  onChange: (value: string | null) => void;
+}
+
+export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
+  value,
+  onChange,
+}) => {
   const colors = [
     "#ababab",
     "#0089ff",
@@ -24,37 +53,46 @@ export const SourceIconSelect: React.FC<SourceIconSelectProps> = ({
     "#7950f2",
   ];
 
+  return (
+    <ColorInput
+      value={value || colors[0]}
+      onChange={onChange}
+      swatches={colors}
+      style={{ flex: 1 }}
+    />
+  );
+};
+
+interface SourceIconSelectProps {
+  value: Source;
+  onChange: (value: Source) => void;
+}
+
+export const SourceIconSelect: React.FC<SourceIconSelectProps> = ({
+  value,
+  onChange,
+}) => {
   const handleTypeChange = (type: string | null) => {
     onChange({ ...value, type: type || undefined });
   };
 
-  const handleColorChange = (color: string) => {
+  const handleColorChange = (color: string | null) => {
     onChange({
       ...value,
       attributes: { ...(value.attributes || {}), icon_color: color },
     });
   };
 
-  const translatedOptions = ICON_OPTIONS.map((option) => ({
-    ...option,
-    label: t(`source.type.${option.label}`),
-  }));
-
   return (
     <Group>
-      <Select
-        leftSection={<SourceIcon source={value} />}
-        defaultValue={translatedOptions[0].value}
+      <SourceIconSelector
+        data={value}
         value={value.type}
         onChange={handleTypeChange}
-        data={translatedOptions}
-        style={{ flex: 1 }}
       />
-      <ColorInput
-        value={String((value.attributes || {}).icon_color || colors[0])}
+      <SourceColorSelector
+        value={String(value.attributes?.icon_color)}
         onChange={handleColorChange}
-        swatches={colors}
-        style={{ flex: 1 }}
       />
     </Group>
   );
