@@ -1,9 +1,10 @@
-import { IconRiSeedlingLine } from '@/assets/icons/generated/ri-seedling-line';
-import { IconMingcuteGovernmentLine } from '@/assets/icons/generated/mingcute-government-line';
-import { IconStreamlineFlexDeepfakeTechnology1Solid } from '@/assets/icons/generated/streamline-flex-deepfake-technology-1-solid';
-import { IconPixelTechnology } from '@/assets/icons/generated/pixel-technology';
-import { IconMdiFactory } from '@/assets/icons/generated/mdi-factory';
-import { IconCodiconOrganization } from '@/assets/icons/generated/codicon-organization';
+import { IconStreamlineFlexDeepfakeTechnology1Solid } from '../../assets/icons/generated/streamline-flex-deepfake-technology-1-solid';
+import { IconPixelTechnology } from '../../assets/icons/generated/pixel-technology';
+import { IconRiSeedlingLine } from '../../assets/icons/generated/ri-seedling-line';
+import { IconMdiFactory } from '../../assets/icons/generated/mdi-factory';
+import { IconCodiconOrganization } from '../../assets/icons/generated/codicon-organization';
+import { IconMingcuteGovernmentLine } from '../../assets/icons/generated/mingcute-government-line';
+
 
 import { BuildingOfficeIcon } from '@heroicons/react/24/solid';
 

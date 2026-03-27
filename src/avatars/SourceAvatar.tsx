@@ -1,9 +1,9 @@
-import "@/avatars/layouts/EntityStyles.css";
+import "../avatars/layouts/EntityStyles.css";
 import { ActionIcon, Avatar, Group, Tooltip, Text } from "@mantine/core";
 import type { Source, Relation } from "omni-osint-crud-client";
-import { RelationTooltip } from "@/avatars/layouts/RelationTooltip";
-import { SourceIcon } from "@/icons";
-import { SourceCard } from "@/cards";
+import { RelationTooltip } from "./layouts/RelationTooltip";
+import { SourceIcon } from "../icons";
+import { SourceCard } from "../cards";
 
 interface Props {
   data: Source;

@@ -1,6 +1,7 @@
-import { IconMdiForum } from '@/assets/icons/generated/mdi-forum';
-import { IconStreamlineCyberNewspaper2 } from '@/assets/icons/generated/streamline-cyber-newspaper-2';
-import { IconMingcuteGovernmentLine } from '@/assets/icons/generated/mingcute-government-line';
+import { IconMdiForum } from '../../assets/icons/generated/mdi-forum';
+import { IconStreamlineCyberNewspaper2 } from '../../assets/icons/generated/streamline-cyber-newspaper-2';
+import { IconMingcuteGovernmentLine } from '../../assets/icons/generated/mingcute-government-line';
+
 
 import { BuildingOfficeIcon } from '@heroicons/react/24/solid';
 

@@ -1,9 +1,9 @@
-import "@/avatars/layouts/EntityStyles.css";
+import "../avatars/layouts/EntityStyles.css";
 import { Avatar, Tooltip } from "@mantine/core";
 import type { Organization, Relation } from "omni-osint-crud-client";
-import { RelationTooltip } from "@/avatars/layouts/RelationTooltip";
-import { OrganizationIcon } from "@/icons";
-import { OrganizationCard } from "@/cards";
+import { RelationTooltip } from "./layouts/RelationTooltip";
+import { OrganizationIcon } from "../icons";
+import { OrganizationCard } from "../cards";
 
 interface Props {
   data: Organization;

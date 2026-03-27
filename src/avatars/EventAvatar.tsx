@@ -1,9 +1,9 @@
-import "@/avatars/layouts/EntityStyles.css";
+import "../avatars/layouts/EntityStyles.css";
 import { Avatar, Tooltip } from "@mantine/core";
 import type { Event, Relation } from "omni-osint-crud-client";
-import { RelationTooltip } from "@/avatars/layouts/RelationTooltip";
-import { EventIcon } from "@/icons";
-import { EventCard } from "@/cards";
+import { RelationTooltip } from "./layouts/RelationTooltip";
+import { EventIcon } from "../icons";
+import { EventCard } from "../cards";
 
 interface Props {
   data: Event;
