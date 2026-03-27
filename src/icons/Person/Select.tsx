@@ -1,8 +1,8 @@
-import { type Person } from 'omni-osint-crud-client';
-import { useTranslation } from 'react-i18next';
-import { Group, Select, ColorInput } from '@mantine/core';
-import { ICON_OPTIONS } from './icons';
-import { PersonIcon } from './Icon';
+import { type Person } from "omni-osint-crud-client";
+import { useTranslation } from "react-i18next";
+import { Group, Select, ColorInput } from "@mantine/core";
+import { ICON_OPTIONS } from "./icons";
+import { PersonIcon } from "./Icon";
 
 interface PersonIconSelectorProps {
   data: Person;
@@ -26,7 +26,7 @@ export const PersonIconSelector: React.FC<PersonIconSelectorProps> = ({
     <Select
       leftSection={<PersonIcon person={data} />}
       defaultValue={translatedOptions[0].value}
-      value={value}
+      value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
       style={{ flex: 1 }}
@@ -55,7 +55,8 @@ export const PersonColorSelector: React.FC<PersonColorSelectorProps> = ({
 
   return (
     <ColorInput
-      value={value || colors[0]}
+      defaultValue={colors[0]}
+      value={value ?? ""}
       onChange={onChange}
       swatches={colors}
       style={{ flex: 1 }}

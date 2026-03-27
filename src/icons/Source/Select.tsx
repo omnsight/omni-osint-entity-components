@@ -26,7 +26,7 @@ export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
     <Select
       leftSection={<SourceIcon source={data} />}
       defaultValue={translatedOptions[0].value}
-      value={value}
+      value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
       style={{ flex: 1 }}
@@ -55,7 +55,8 @@ export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
 
   return (
     <ColorInput
-      value={value || colors[0]}
+      defaultValue={colors[0]}
+      value={value ?? ""}
       onChange={onChange}
       swatches={colors}
       style={{ flex: 1 }}
@@ -91,7 +92,7 @@ export const SourceIconSelect: React.FC<SourceIconSelectProps> = ({
         onChange={handleTypeChange}
       />
       <SourceColorSelector
-        value={String(value.attributes?.icon_color)}
+        value={String(value.attributes?.icon_color ?? "")}
         onChange={handleColorChange}
       />
     </Group>

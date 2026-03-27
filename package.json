@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "engines": {
     "node": ">=24.0.0"
   },
@@ -58,6 +58,7 @@
     "omni-osint-crud-client": "latest",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-hook-form": "^7.72.0",
     "react-i18next": "^16.6.6"
   },
   "devDependencies": {
