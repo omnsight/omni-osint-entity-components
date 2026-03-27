@@ -66,6 +66,11 @@
     "title": "Title",
     "description": "Description"
   },
+  "monitoringSource": {
+    "name": "Name",
+    "type": "Type",
+    "description": "Description"
+  },
   "tooltip": {
     "relation": "Related",
     "confidence": "Confidence",

@@ -3,3 +3,4 @@ export * from './PersonCard';
 export * from './OrganizationCard';
 export * from './WebsiteCard';
 export * from './SourceCard';
+export * from './MonittoringSourceCard';

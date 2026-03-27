@@ -22,7 +22,7 @@ export const OrganizationCard: React.FC<Props> = ({
     <Paper withBorder={withBorder} p="xs" bg={background}>
       <Group justify="space-between" wrap="nowrap" align="flex-start">
         <Stack gap={0}>
-          <Title>{organization.name || t("organization.name")}</Title>
+          <Title order={2}>{organization.name || t("organization.name")}</Title>
           {organization.tags && (
             <Group gap="xs" mt="xs">
               {organization.tags.map((tag) => (

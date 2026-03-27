@@ -3,6 +3,7 @@ import {
   Badge,
   Group,
   Paper,
+  ScrollArea,
   Stack,
   Text,
   Title,
@@ -32,7 +33,7 @@ export const SourceCard: React.FC<Props> = ({
       <Group justify="space-between" wrap="nowrap" align="flex-start">
         <Stack gap={0}>
           <Group>
-            <Title>{source.name || t("source.name")}</Title>
+            <Title order={2}>{source.name || t("source.name")}</Title>
             {source.url && (
               <ActionIcon
                 variant="subtle"
@@ -45,9 +46,11 @@ export const SourceCard: React.FC<Props> = ({
               </ActionIcon>
             )}
           </Group>
-          <Text truncate="end">
-            {source.description || t("source.description")}
-          </Text>
+          <ScrollArea h={50} type="auto" offsetScrollbars>
+            <Text>
+              {source.description || t("source.description")}
+            </Text>
+          </ScrollArea>
           {source.tags && (
             <Group gap="xs" mt="xs">
               {source.tags.map((tag) => (

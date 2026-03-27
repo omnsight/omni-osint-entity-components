@@ -65,7 +65,11 @@
     },
     "title": "标题",
     "description": "描述"
-  
+  },
+  "monitoringSource": {
+    "name": "名称",
+    "type": "类型",
+    "description": "描述"
   },
   "tooltip": {
     "relation": "相关",
