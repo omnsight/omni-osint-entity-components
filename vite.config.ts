@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [react(), dts({
     insertTypesEntry: true,
   })],
+  server: {
+    port: 5000,
+  },
   build: {
     lib: {
       entry: 'src/index.ts',
