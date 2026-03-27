@@ -8,12 +8,14 @@ interface PersonIconSelectorProps {
   data: Person;
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const PersonIconSelector: React.FC<PersonIconSelectorProps> = ({
   data,
   value,
   onChange,
+  error,
 }) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ export const PersonIconSelector: React.FC<PersonIconSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };
@@ -37,11 +39,13 @@ export const PersonIconSelector: React.FC<PersonIconSelectorProps> = ({
 interface PersonColorSelectorProps {
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const PersonColorSelector: React.FC<PersonColorSelectorProps> = ({
   value,
   onChange,
+  error,
 }) => {
   const colors = [
     "#0089ff",
@@ -59,7 +63,7 @@ export const PersonColorSelector: React.FC<PersonColorSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       swatches={colors}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };

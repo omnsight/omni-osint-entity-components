@@ -8,12 +8,14 @@ interface WebsiteIconSelectorProps {
   data: Website;
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
   data,
   value,
   onChange,
+  error,
 }) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };
@@ -37,11 +39,13 @@ export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
 interface WebsiteColorSelectorProps {
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const WebsiteColorSelector: React.FC<WebsiteColorSelectorProps> = ({
   value,
   onChange,
+  error,
 }) => {
   const colors = [
     "#0089ff",
@@ -59,7 +63,7 @@ export const WebsiteColorSelector: React.FC<WebsiteColorSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       swatches={colors}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };

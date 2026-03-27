@@ -8,12 +8,14 @@ interface EventIconSelectorProps {
   data: Event;
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
   data,
   value,
   onChange,
+  error,
 }) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       data={translatedOptions}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };
@@ -37,11 +39,13 @@ export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
 interface EventColorSelectorProps {
   value?: string | null;
   onChange: (value: string | null) => void;
+  error?: string;
 }
 
 export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
   value,
   onChange,
+  error,
 }) => {
   const colors = [
     "#0089ff",
@@ -59,7 +63,7 @@ export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
       value={value ?? ""}
       onChange={onChange}
       swatches={colors}
-      style={{ flex: 1 }}
+      error={error}
     />
   );
 };

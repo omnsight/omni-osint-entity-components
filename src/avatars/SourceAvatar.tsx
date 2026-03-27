@@ -1,4 +1,5 @@
 import "../avatars/layouts/EntityStyles.css";
+import { LinkIcon } from "@heroicons/react/24/solid";
 import { ActionIcon, Avatar, Group, Tooltip, Text } from "@mantine/core";
 import type { Source, Relation } from "omni-osint-crud-client";
 import { RelationTooltip } from "./layouts/RelationTooltip";
@@ -58,10 +59,46 @@ export const SourceAvatarRow: React.FC<Props> = ({
         </Text>
       </Tooltip>
       {data.url && (
-        <ActionIcon variant="subtle" size="sm">
-          <SourceIcon source={data} />
+        <ActionIcon
+          variant="subtle"
+          size="sm"
+          component="a"
+          href={data.url}
+          target="_blank"
+        >
+          <LinkIcon />
         </ActionIcon>
       )}
     </Group>
+  );
+};
+
+export const SourceLink: React.FC<Props> = ({
+  data,
+  relation,
+  renderTooltip = defaultRenderSourceTooltip,
+}) => {
+  if (!data.url) {
+    return null;
+  }
+  return (
+    <Tooltip
+      key={data._id}
+      label={renderTooltip(data, relation)}
+      position="left"
+      withArrow
+      withinPortal
+      multiline
+    >
+      <ActionIcon
+        variant="subtle"
+        size="sm"
+        component="a"
+        href={data.url}
+        target="_blank"
+      >
+        <LinkIcon />
+      </ActionIcon>
+    </Tooltip>
   );
 };

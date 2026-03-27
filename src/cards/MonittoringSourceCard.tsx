@@ -1,7 +1,7 @@
+import React from "react";
 import { Group, Paper, RingProgress, Stack, Text, Title, ScrollArea } from "@mantine/core";
 import { type MonitoringSource } from "omni-monitoring-client";
 import { useTranslation } from "react-i18next";
-import React from "react";
 
 interface Props {
   monitoringSource: MonitoringSource;
