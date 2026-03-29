@@ -11,6 +11,7 @@ import {
   Tooltip,
   Box,
   Select,
+  Badge,
 } from '@mantine/core';
 import { ArrowTopRightOnSquareIcon, UserIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
@@ -102,18 +103,15 @@ export const StaticForm: React.FC<Props> = ({
           </Text>
 
           <Group gap={4}>
-            <Text size="sm" c="dimmed">
-              {t('placeholder.type')}:
-            </Text>
-            <Text size="sm">{source.type}</Text>
-          </Group>
-
-          <Group gap={4}>
             <Text>{t('placeholder.reliability')}:</Text>
             <Text>{source.reliability}</Text>
           </Group>
 
-          <Text>{(source.tags || []).join(', ')}</Text>
+          <Group gap="xs">
+            {(source.tags || []).map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </Group>
 
           {children}
 

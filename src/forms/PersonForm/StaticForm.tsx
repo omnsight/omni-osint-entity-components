@@ -10,6 +10,7 @@ import {
   Tooltip,
   Box,
   Select,
+  Badge,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { type Person, type Permissive } from 'omni-osint-crud-client';
@@ -78,13 +79,6 @@ export const StaticForm: React.FC<Props> = ({
             onDoubleClick={onDoubleClick}
           >
             <Group gap={4}>
-              <Text size="sm" c="dimmed">
-                {t('placeholder.type')}:
-              </Text>
-              <Text size="sm">{person.type}</Text>
-            </Group>
-
-            <Group gap={4}>
               <Text>{t('placeholder.role')}:</Text>
               <Text>{person.role}</Text>
             </Group>
@@ -105,7 +99,11 @@ export const StaticForm: React.FC<Props> = ({
               </Text>
             </Group>
 
-            <Text size="sm">{(person.tags || []).join(', ')}</Text>
+            <Group gap="xs">
+              {(person.tags || []).map((tag) => (
+                <Badge key={tag}>{tag}</Badge>
+              ))}
+            </Group>
 
             {children}
 

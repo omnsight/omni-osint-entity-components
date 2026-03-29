@@ -10,6 +10,7 @@ import {
   Tooltip,
   Box,
   Select,
+  Badge,
 } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { type Organization, type Permissive } from "omni-osint-crud-client";
@@ -79,13 +80,6 @@ export const StaticForm: React.FC<Props> = ({
           >
             <Group gap={4}>
               <Text size="sm" c="dimmed">
-                {t("placeholder.type")}:
-              </Text>
-              <Text size="sm">{organization.type}</Text>
-            </Group>
-
-            <Group gap={4}>
-              <Text size="sm" c="dimmed">
                 {t("placeholder.foundedDate")}:
               </Text>
               <Text size="sm">
@@ -110,7 +104,11 @@ export const StaticForm: React.FC<Props> = ({
               </Text>
             </Group>
 
-            <Text size="sm">{(organization.tags || []).join(", ")}</Text>
+            <Group gap="xs">
+              {(organization.tags || []).map((tag) => (
+                <Badge key={tag}>{tag}</Badge>
+              ))}
+            </Group>
 
             {children}
 
