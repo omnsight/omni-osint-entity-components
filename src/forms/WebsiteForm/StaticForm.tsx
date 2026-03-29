@@ -103,14 +103,18 @@ export const StaticForm: React.FC<Props> = ({
           </Group>
 
           <Group gap={4}>
+            <Text>{t("placeholder.url")}:</Text>
             <Text>{website.url}</Text>
           </Group>
 
-          <Group gap={4}>
-            <Text>{website.description || t("placeholder.description")}</Text>
-          </Group>
+          <Text size="sm">
+            {website.description || t("placeholder.description")}
+          </Text>
 
           <Group gap={4}>
+            <Text size="sm" c="dimmed">
+              {t("placeholder.foundedDate")}:
+            </Text>
             <Text size="sm">
               {website.founded_at
                 ? new Date(website.founded_at * 1000).toLocaleDateString()
@@ -119,6 +123,9 @@ export const StaticForm: React.FC<Props> = ({
           </Group>
 
           <Group gap={4}>
+            <Text size="sm" c="dimmed">
+              {t("placeholder.discoveredDate")}:
+            </Text>
             <Text size="sm">
               {website.discovered_at
                 ? new Date(website.discovered_at * 1000).toLocaleDateString()
