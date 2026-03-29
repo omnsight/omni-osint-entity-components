@@ -18,6 +18,7 @@ interface Props extends PropsWithChildren {
   source: MonitoringSource;
   onClose?: () => void;
   onDoubleClick: () => void;
+  editModeEnabled: boolean;
   exitButton?: React.ReactNode;
 }
 
@@ -25,6 +26,7 @@ export const StaticForm: React.FC<Props> = ({
   source,
   onClose,
   onDoubleClick,
+  editModeEnabled,
   exitButton,
   children,
 }) => {
@@ -47,7 +49,7 @@ export const StaticForm: React.FC<Props> = ({
         <Stack
           pos="relative"
           gap="xs"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: editModeEnabled ? 'pointer' : 'default' }}
           onDoubleClick={onDoubleClick}
         >
           <Text>{source.description || t('placeholder.description')}</Text>

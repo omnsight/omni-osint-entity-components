@@ -48,6 +48,7 @@ interface Props extends PropsWithChildren {
   onUpdate?: (data: Permissive) => void;
   onClose?: () => void;
   onDoubleClick: () => void;
+  editModeEnabled: boolean;
   exitButton?: React.ReactNode;
   style?: CSSProperties;
 }
@@ -59,6 +60,7 @@ export const StaticForm: React.FC<Props> = ({
   onUpdate,
   onClose,
   onDoubleClick,
+  editModeEnabled,
   exitButton,
   children,
   style,
@@ -102,7 +104,7 @@ export const StaticForm: React.FC<Props> = ({
             pos="relative"
             gap="xs"
             style={{
-              cursor: "pointer",
+              cursor: editModeEnabled ? "pointer" : "default",
             }}
             onDoubleClick={onDoubleClick}
           >
@@ -193,7 +195,7 @@ export const StaticForm: React.FC<Props> = ({
                     display: "flex",
                   }}
                 >
-                  {t("components.forms.EventForm.accessLabel")}:
+                  {t("placeholder.accessLabel")}:
                 </Box>
                 <Controller
                   name="read"

@@ -157,7 +157,6 @@
       "EventForm": {
         "title": "Event Title",
         "eventDescription": "event description",
-        "accessLabel": "Access Control",
         "minLatitude": "Latitude cannot be less than -90",
         "maxLatitude": "Latitude cannot be greater than 90",
         "minLongitude": "Longitude cannot be less than -180",
@@ -169,6 +168,10 @@
         "unsavedChangesWarning": "Are you sure you want to discard the changes?"
       }
     }
+  },
+  "input": {
+    "color": "Select A Color",
+    "icon": "Select An Icon"
   },
   "placeholder": {
     "title": "Title",
@@ -205,6 +208,7 @@
     "key": "Key",
     "value": "Value",
     "unknown": "Unknown",
+    "accessLabel": "Access Control",
     "readAccess": "Read Access",
     "writeAccess": "Write Access"
   }

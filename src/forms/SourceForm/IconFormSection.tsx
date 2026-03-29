@@ -1,4 +1,4 @@
-import { Group, Stack, Text } from "@mantine/core";
+import { Group } from "@mantine/core";
 import {
   SourceColorSelector,
   SourceIconSelector,
@@ -8,7 +8,10 @@ import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export const SourceIconFormSection = ({ data }: { data: Source }) => {
-  const { control } = useFormContext<Source>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<Source>();
   const { t } = useTranslation();
   const type = useWatch({ control, name: "type" });
   const iconColor = useWatch({ control, name: "attributes.icon_color" });
@@ -25,34 +28,25 @@ export const SourceIconFormSection = ({ data }: { data: Source }) => {
         name="type"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
-          <Stack gap={0}>
-            <SourceIconSelector
-              {...field}
-              data={modifiedData}
-              value={field.value}
-            />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
-          </Stack>
+        render={({ field }) => (
+          <SourceIconSelector
+            {...field}
+            data={modifiedData}
+            value={field.value}
+            error={errors.type?.message}
+          />
         )}
       />
       <Controller
         name="attributes.icon_color"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
-          <Stack gap={0}>
-            <SourceColorSelector {...field} value={String(field.value)} />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
-          </Stack>
+        render={({ field }) => (
+          <SourceColorSelector
+            {...field}
+            value={field.value as string | undefined}
+            error={errors.attributes?.icon_color?.message}
+          />
         )}
       />
     </Group>

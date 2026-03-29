@@ -21,19 +21,19 @@ export const MonitoringSourceForm: React.FC<Props> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(onSubmit !== undefined || false);
 
-  if (onSubmit !== undefined && (onUpdate !== undefined)) {
+  if (onSubmit !== undefined && onUpdate !== undefined) {
     throw new Error("onSubmit cannot be defined at the same time with onUpdate");
   }
 
   const handlClose = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(false);
     }
     onClose?.();
   };
 
   const handleDoubleClick = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(true);
     }
   };
@@ -51,6 +51,7 @@ export const MonitoringSourceForm: React.FC<Props> = ({
       onClose={handlClose}
       onDoubleClick={handleDoubleClick}
       exitButton={exitButton || <></>}
+      editModeEnabled={onUpdate !== undefined}
     >
       {children}
     </StaticForm>

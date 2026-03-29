@@ -1,4 +1,8 @@
-import React, { useState, type CSSProperties, type PropsWithChildren } from 'react';
+import React, {
+  useState,
+  type CSSProperties,
+  type PropsWithChildren,
+} from "react";
 import {
   Stack,
   Group,
@@ -7,34 +11,45 @@ import {
   UnstyledButton,
   Collapse,
   Title,
-  MultiSelect,
   rem,
   Tooltip,
-} from '@mantine/core';
-import { useTranslation } from 'react-i18next';
-import { type Relation, type Permissive } from 'omni-osint-crud-client';
-import { EditableAttributes } from '../EditableAttributes';
-import { ChevronDownIcon, UserIcon } from '@heroicons/react/24/outline';
-import { Controller } from 'react-hook-form';
-import { BaseForm } from '../BaseForm';
+  Box,
+  Select,
+} from "@mantine/core";
+import { useTranslation } from "react-i18next";
+import { type Relation, type Permissive } from "omni-osint-crud-client";
+import { EditableAttributes } from "../EditableAttributes";
+import { ChevronDownIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  getAccessLevel,
+  getRoles,
+  useReadOptions,
+  useWriteOptions,
+} from "../accessLevel";
+import { Controller } from "react-hook-form";
+import { BaseForm } from "../BaseForm";
 
 interface Props extends PropsWithChildren {
   relation: Relation;
+  isAdmin?: boolean;
   onUpdate?: (data: Permissive) => void;
   onClose?: () => void;
   onDoubleClick: () => void;
   exitButton?: React.ReactNode;
   style?: CSSProperties;
+  editModeEnabled: boolean;
 }
 
 export const StaticForm: React.FC<Props> = ({
   relation,
+  isAdmin = false,
   onUpdate,
   onClose,
   onDoubleClick,
   exitButton,
   children,
   style,
+  editModeEnabled,
 }) => {
   const { t } = useTranslation();
   const [attributesOpen, setAttributesOpen] = useState(false);
@@ -43,22 +58,13 @@ export const StaticForm: React.FC<Props> = ({
     onClose?.();
   };
 
-  const readOptions = [
-    { value: "guest", label: t("access.guest") },
-    { value: "user", label: t("access.user") },
-    { value: "pro", label: t("access.pro") },
-    { value: "admin", label: t("access.admin") },
-  ];
-
-  const writeOptions = [
-    { value: "pro", label: t("access.pro") },
-    { value: "admin", label: t("access.admin") },
-  ];
+  const readOptions = useReadOptions(isAdmin);
+  const writeOptions = useWriteOptions();
 
   return (
     <BaseForm<Relation>
       style={style}
-      title={relation.label || t('components.forms.RelationForm.title')}
+      title={relation.label || t("components.forms.RelationForm.title")}
       onClose={handlClose}
       defaultValues={relation}
       onUpdate={onUpdate}
@@ -69,64 +75,80 @@ export const StaticForm: React.FC<Props> = ({
         <Stack
           pos="relative"
           gap="xs"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: editModeEnabled ? "pointer" : "default" }}
           onDoubleClick={onDoubleClick}
         >
           <Group gap={4}>
-            <Text size="sm">{t('placeholder.name')}:</Text>
+            <Text size="sm">{t("placeholder.name")}:</Text>
             <Text size="sm">{relation.name}</Text>
           </Group>
 
           <Group gap={4}>
-            <Text size="sm">{t('placeholder.confidence')}:</Text>
+            <Text size="sm">{t("placeholder.confidence")}:</Text>
             <Text size="sm">{relation.confidence}</Text>
           </Group>
 
           {children}
 
           {onUpdate && (
-            <Group gap="xs">
-              {relation.owner && (
+            <Group gap="xs" w="100%">
+              <Box
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <Tooltip label={relation.owner?.toUpperCase()[0] || ""}>
                   <UserIcon style={{ width: rem(18), height: rem(18) }} />
                 </Tooltip>
-              )}
+              </Box>
+              <Box
+                style={{
+                  flex: 3,
+                  display: "flex",
+                }}
+              >
+                {t("placeholder.accessLabel")}:
+              </Box>
               <Controller
                 name="read"
                 control={control}
                 rules={{ required: t("common.required") }}
-                render={({ field }) => (
-                  <MultiSelect
-                    {...field}
-                    value={field.value ?? []}
-                    placeholder={t("placeholder.country")}
-                    data={readOptions}
-                    searchable
-                    clearable
-                    error={errors.read?.message}
-                  />
-                )}
+                render={({ field }) => {
+                  return (
+                    <Box style={{ flex: 4 }}>
+                      <Select
+                        value={getAccessLevel(field.value ?? [])}
+                        onChange={(value) => field.onChange(getRoles(value))}
+                        placeholder={t("placeholder.readAccess")}
+                        data={readOptions}
+                        clearable
+                        error={errors.read?.message}
+                      />
+                    </Box>
+                  );
+                }}
               />
               <Controller
                 name="write"
                 control={control}
-                rules={{
-                  required: t("common.required"),
-                  validate: (value) =>
-                    (value ?? []).includes("admin") ||
-                    t("validation.mustIncludeAdmin"),
+                rules={{ required: t("common.required") }}
+                render={({ field }) => {
+                  return (
+                    <Box style={{ flex: 4 }}>
+                      <Select
+                        value={getAccessLevel(field.value ?? [])}
+                        onChange={(value) => field.onChange(getRoles(value))}
+                        placeholder={t("placeholder.writeAccess")}
+                        data={writeOptions}
+                        clearable
+                        error={errors.write?.message}
+                      />
+                    </Box>
+                  );
                 }}
-                render={({ field }) => (
-                  <MultiSelect
-                    {...field}
-                    value={field.value ?? []}
-                    placeholder={t("placeholder.country")}
-                    data={writeOptions}
-                    searchable
-                    clearable
-                    error={errors.write?.message}
-                  />
-                )}
               />
             </Group>
           )}
@@ -135,12 +157,12 @@ export const StaticForm: React.FC<Props> = ({
 
           <UnstyledButton onClick={() => setAttributesOpen((o) => !o)}>
             <Group justify="space-between">
-              <Title order={5}>{t('placeholder.attributes')}</Title>
+              <Title order={5}>{t("placeholder.attributes")}</Title>
               <ChevronDownIcon
                 style={{
                   width: 16,
-                  transform: attributesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 200ms ease',
+                  transform: attributesOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 200ms ease",
                 }}
               />
             </Group>

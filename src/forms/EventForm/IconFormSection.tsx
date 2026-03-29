@@ -44,7 +44,7 @@ export const IconFormSection = ({ data }: { data: Event }) => {
         render={({ field }) => (
           <EventColorSelector
             {...field}
-            value={String(field.value)}
+            value={field.value as string | undefined}
             error={errors.attributes?.icon_color?.message}
           />
         )}

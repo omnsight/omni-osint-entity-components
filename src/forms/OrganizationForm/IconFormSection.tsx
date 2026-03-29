@@ -1,4 +1,4 @@
-import { Group, Text, Stack } from "@mantine/core";
+import { Group, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { type Organization } from "omni-osint-crud-client";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
@@ -12,7 +12,10 @@ export const OrganizationIconFormSection = ({
 }: {
   data: Organization;
 }) => {
-  const { control } = useFormContext<Organization>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<Organization>();
   const { t } = useTranslation();
   const type = useWatch({ control, name: "type" });
   const iconColor = useWatch({ control, name: "attributes.icon_color" });
@@ -29,18 +32,14 @@ export const OrganizationIconFormSection = ({
         name="type"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
+        render={({ field }) => (
           <Stack gap={0}>
             <OrganizationIconSelector
               {...field}
               data={modifiedData}
               value={field.value}
+              error={errors.type?.message}
             />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
           </Stack>
         )}
       />
@@ -48,15 +47,12 @@ export const OrganizationIconFormSection = ({
         name="attributes.icon_color"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
-          <Stack gap={0}>
-            <OrganizationColorSelector {...field} value={String(field.value)} />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
-          </Stack>
+        render={({ field }) => (
+          <OrganizationColorSelector
+            {...field}
+            value={field.value as string | undefined}
+            error={errors.attributes?.icon_color?.message}
+          />
         )}
       />
     </Group>

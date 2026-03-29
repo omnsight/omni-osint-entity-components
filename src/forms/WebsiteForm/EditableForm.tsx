@@ -5,6 +5,7 @@ import { StaticForm } from "./StaticForm";
 
 interface Props extends PropsWithChildren {
   website: Website;
+  isAdmin?: boolean;
   onSubmit?: (data: Website) => void;
   onUpdate?: (data: Partial<Website>) => void;
   onUpdatePermissive?: (data: Permissive) => void;
@@ -15,6 +16,7 @@ interface Props extends PropsWithChildren {
 
 export const WebsiteForm: React.FC<Props> = ({
   website,
+  isAdmin = false,
   onSubmit,
   onUpdate,
   onUpdatePermissive,
@@ -23,21 +25,26 @@ export const WebsiteForm: React.FC<Props> = ({
   children,
   style,
 }) => {
-  const [isEditing, setIsEditing] = useState(onSubmit !== undefined || false);
+  const [isEditing, setIsEditing] = useState(onSubmit !== undefined);
 
-  if (onSubmit !== undefined && (onUpdate !== undefined || onUpdatePermissive !== undefined)) {
-    throw new Error("onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive");
+  if (
+    onSubmit !== undefined &&
+    (onUpdate !== undefined || onUpdatePermissive !== undefined)
+  ) {
+    throw new Error(
+      "onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive",
+    );
   }
 
   const handlClose = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(false);
     }
     onClose?.();
   };
 
   const handleDoubleClick = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(true);
     }
   };
@@ -53,11 +60,13 @@ export const WebsiteForm: React.FC<Props> = ({
   ) : (
     <StaticForm
       website={website}
+      isAdmin={isAdmin}
       onUpdate={onUpdatePermissive}
       onClose={handlClose}
       onDoubleClick={handleDoubleClick}
       exitButton={exitButton || <></>}
       style={style}
+      editModeEnabled={onUpdate !== undefined}
     >
       {children}
     </StaticForm>

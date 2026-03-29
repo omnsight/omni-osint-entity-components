@@ -157,7 +157,6 @@
       "EventForm": {
         "title": "事件标题",
         "eventDescription": "事件详细描述",
-        "accessLabel": "访问权限",
         "minLatitude": "纬度不能小于-90",
         "maxLatitude": "纬度不能大于90",
         "minLongitude": "经度不能小于-180",
@@ -169,6 +168,10 @@
         "unsavedChangesWarning": "是否确认放弃修改？注意：所有未保存的修改将丢失。"
       }
     }
+  },
+  "input": {
+    "color": "请选择颜色",
+    "icon": "请选择图标"
   },
   "placeholder": {
     "title": "标题",
@@ -205,6 +208,7 @@
     "key": "标签",
     "value": "内容",
     "unknown": "未知",
+    "accessLabel": "访问权限",
     "readAccess": "读取权限",
     "writeAccess": "写入权限"
   }

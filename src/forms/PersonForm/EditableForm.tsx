@@ -5,6 +5,7 @@ import { StaticForm } from "./StaticForm";
 
 interface Props extends PropsWithChildren {
   person: Person;
+  isAdmin?: boolean;
   onSubmit?: (data: Person) => void;
   onUpdate?: (data: Partial<Person>) => void;
   onUpdatePermissive?: (data: Permissive) => void;
@@ -15,6 +16,7 @@ interface Props extends PropsWithChildren {
 
 export const PersonForm: React.FC<Props> = ({
   person,
+  isAdmin = false,
   onSubmit,
   onUpdate,
   onUpdatePermissive,
@@ -25,19 +27,24 @@ export const PersonForm: React.FC<Props> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(onSubmit !== undefined || false);
 
-  if (onSubmit !== undefined && (onUpdate !== undefined || onUpdatePermissive !== undefined)) {
-    throw new Error("onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive");
+  if (
+    onSubmit !== undefined &&
+    (onUpdate !== undefined || onUpdatePermissive !== undefined)
+  ) {
+    throw new Error(
+      "onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive",
+    );
   }
 
   const handlClose = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(false);
     }
     onClose?.();
   };
 
   const handleDoubleClick = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(true);
     }
   };
@@ -53,11 +60,13 @@ export const PersonForm: React.FC<Props> = ({
   ) : (
     <StaticForm
       person={person}
+      isAdmin={isAdmin}
       onUpdate={onUpdatePermissive}
       onClose={handlClose}
       onDoubleClick={handleDoubleClick}
       exitButton={exitButton || <></>}
       style={style}
+      editModeEnabled={onUpdate !== undefined}
     >
       {children}
     </StaticForm>

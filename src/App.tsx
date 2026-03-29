@@ -68,6 +68,7 @@ import {
 function App() {
   const { i18n } = useTranslation();
   const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const [isAdmin, setIsAdmin] = useState(true);
   const [person, setPerson] = useState<Person>({
     _id: "person/1",
     name: "John Doe",
@@ -102,6 +103,16 @@ function App() {
     url: "https://example.com/article",
     description: "A news article about something.",
     tags: ["news", "article"],
+    owner: "asj1834s",
+    read: ["admin"],
+    write: ["admin"],
+  });
+  const [source2, ] = useState<Source>({
+    _id: "source/2",
+    name: "Sample Artical 2",
+    url: "https://example.com/article/2",
+    description: "A news article about something 2",
+    tags: ["news", "article", "2"],
     owner: "asj1834s",
     read: ["admin"],
     write: ["admin"],
@@ -143,7 +154,7 @@ function App() {
 
   const cardStyle = {
     height: 500,
-    width: 400,
+    width: 500,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -186,6 +197,7 @@ function App() {
         >
           Toggle Theme
         </Button>
+        <Button onClick={() => setIsAdmin((p) => !p)}>Toggle Admin</Button>
       </Group>
       <ScrollArea style={{ height: "100vh" }}>
         <Stack p="lg" gap="lg">
@@ -273,47 +285,42 @@ function App() {
               <Text>Website:</Text>
               <WebsiteIconSelect value={website} onChange={setWebsite} />
             </Card>
+          </SimpleGrid>
 
-            <Card withBorder style={cardStyle}>
-              <Text>Cards</Text>
-              <ScrollArea w={350} h={400}>
-                <Stack>
-                  <EventCard
-                    event={event}
-                    action={
-                      <ActionIcon
-                        variant="subtle"
-                        color="gray"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <ArrowRightIcon style={{ width: 18, height: 18 }} />
-                      </ActionIcon>
-                    }
-                  />
-                  <PersonCard person={person} />
-                  <OrganizationCard organization={organization} />
-                  <SourceCard source={source} />
-                  <WebsiteCard website={website} />
-                  <MonitoringSourceCard monitoringSource={monitoringSource} />
-                </Stack>
-              </ScrollArea>
-            </Card>
+          <Divider />
+          <Text size="xl" fw={700}>
+            Entity Cards
+          </Text>
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing="lg"
+          >
+            <EventCard
+              event={event}
+              action={
+                <ActionIcon
+                  variant="subtle"
+                  color="gray"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <ArrowRightIcon style={{ width: 18, height: 18 }} />
+                </ActionIcon>
+              }
+            />
+            <PersonCard person={person} />
+            <OrganizationCard organization={organization} />
+            <SourceCard source={source} />
+            <WebsiteCard website={website} />
+            <MonitoringSourceCard monitoringSource={monitoringSource} />
 
-            <Card withBorder style={cardStyle}>
-              <Text>Empty Cards</Text>
-              <ScrollArea w={350} h={400}>
-                <Stack>
-                  <EventCard event={{}} />
-                  <PersonCard person={{}} />
-                  <OrganizationCard organization={{}} />
-                  <SourceCard source={{}} />
-                  <WebsiteCard website={{}} />
-                  <MonitoringSourceCard monitoringSource={{ owner: "" }} />
-                </Stack>
-              </ScrollArea>
-            </Card>
+            <EventCard event={{}} />
+            <PersonCard person={{}} />
+            <OrganizationCard organization={{}} />
+            <SourceCard source={{}} />
+            <WebsiteCard website={{}} />
+            <MonitoringSourceCard monitoringSource={{ owner: "" }} />
           </SimpleGrid>
 
           <Divider />
@@ -321,9 +328,16 @@ function App() {
           <Text size="xl" fw={700}>
             Input Forms For Creation
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing="lg">
-            <EventForm event={{}} onSubmit={handleSubmit} />
-            <InsightForm insight={{}} onSubmit={handleSubmit} />
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing="lg"
+          >
+            <EventForm event={{}} onSubmit={handleSubmit} isAdmin={isAdmin} />
+            <InsightForm
+              insight={{}}
+              onSubmit={handleSubmit}
+              isAdmin={isAdmin}
+            />
             <MonitoringSourceForm
               source={{ owner: "" }}
               onSubmit={handleSubmit}
@@ -331,33 +345,44 @@ function App() {
             <OrganizationForm
               organization={{}}
               onSubmit={handleSubmit}
+              isAdmin={isAdmin}
             />
-            <PersonForm person={{}} onSubmit={handleSubmit} />
+            <PersonForm person={{}} onSubmit={handleSubmit} isAdmin={isAdmin} />
             <RelationForm
               relation={{ _from: "", _to: "" }}
               onSubmit={handleSubmit}
+              isAdmin={isAdmin}
             />
-            <SourceForm source={{}} onSubmit={handleSubmit} />
-            <WebsiteForm website={{}} onSubmit={handleSubmit} />
+            <SourceForm source={{}} onSubmit={handleSubmit} isAdmin={isAdmin} />
+            <WebsiteForm
+              website={{}}
+              onSubmit={handleSubmit}
+              isAdmin={isAdmin}
+            />
           </SimpleGrid>
 
           <Divider />
 
           <Text size="xl" fw={700}>
-            Forms with onUpdate
+            Forms Double Clickable To Update
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing="lg">
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing="lg"
+          >
             <EventForm
               event={event}
               onUpdate={handleUpdate(setEvent)}
               onUpdatePermissive={handleUpdate(setEvent)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <InsightForm
               insight={insight}
               onUpdate={handleUpdate(setInsight)}
               onUpdatePermissive={handleUpdate(setInsight)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <MonitoringSourceForm
               source={monitoringSource}
@@ -369,41 +394,58 @@ function App() {
               onUpdate={handleUpdate(setOrganization)}
               onUpdatePermissive={handleUpdate(setOrganization)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <PersonForm
               person={person}
               onUpdate={handleUpdate(setPerson)}
               onUpdatePermissive={handleUpdate(setPerson)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <RelationForm
               relation={relation}
               onUpdate={handleUpdate(setRelation)}
               onUpdatePermissive={handleUpdate(setRelation)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <SourceForm
               source={source}
               onUpdate={handleUpdate(setSource)}
               onUpdatePermissive={handleUpdate(setSource)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
             <WebsiteForm
               website={website}
               onUpdate={handleUpdate(setWebsite)}
               onUpdatePermissive={handleUpdate(setWebsite)}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
           </SimpleGrid>
 
           <Divider />
 
           <Text size="xl" fw={700}>
-            Forms without update/submit
+            Read Only Forms
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing="lg">
-            <EventForm event={event} exitButton={exitButton} />
-            <InsightForm insight={insight} exitButton={exitButton} />
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing="lg"
+          >
+            <EventForm
+              event={event}
+              sources={[source, source2]}
+              exitButton={exitButton}
+              isAdmin={isAdmin}
+            />
+            <InsightForm
+              insight={insight}
+              exitButton={exitButton}
+              isAdmin={isAdmin}
+            />
             <MonitoringSourceForm
               source={monitoringSource}
               exitButton={exitButton}
@@ -411,34 +453,54 @@ function App() {
             <OrganizationForm
               organization={organization}
               exitButton={exitButton}
+              isAdmin={isAdmin}
             />
-            <PersonForm person={person} exitButton={exitButton} />
-            <RelationForm relation={relation} exitButton={exitButton} />
+            <PersonForm
+              person={person}
+              exitButton={exitButton}
+              isAdmin={isAdmin}
+            />
+            <RelationForm
+              relation={relation}
+              exitButton={exitButton}
+              isAdmin={isAdmin}
+            />
             <SourceForm source={source} exitButton={exitButton} />
-            <WebsiteForm website={website} exitButton={exitButton} />
+            <WebsiteForm
+              website={website}
+              exitButton={exitButton}
+              isAdmin={isAdmin}
+            />
           </SimpleGrid>
 
           <Divider />
 
           <Text size="xl" fw={700}>
-            Forms with custom style
+            Borderless Read Only Forms
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing="lg">
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing="lg"
+          >
             <EventForm
               event={event}
               style={{ border: "none", boxShadow: "none", padding: 0 }}
+              isAdmin={isAdmin}
             />
             <OrganizationForm
               organization={organization}
               style={{ border: "none", boxShadow: "none", padding: 0 }}
+              isAdmin={isAdmin}
             />
             <PersonForm
               person={person}
               style={{ border: "none", boxShadow: "none", padding: 0 }}
+              isAdmin={isAdmin}
             />
             <RelationForm
               relation={relation}
               style={{ border: "none", boxShadow: "none", padding: 0 }}
+              isAdmin={isAdmin}
             />
             <SourceForm
               source={source}
@@ -447,6 +509,7 @@ function App() {
             <WebsiteForm
               website={website}
               style={{ border: "none", boxShadow: "none", padding: 0 }}
+              isAdmin={isAdmin}
             />
           </SimpleGrid>
         </Stack>

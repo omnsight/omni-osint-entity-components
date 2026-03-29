@@ -29,19 +29,24 @@ export const EventForm: React.FC<Props> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(onSubmit !== undefined || false);
 
-  if (onSubmit !== undefined && (onUpdate !== undefined || onUpdatePermissive !== undefined)) {
-    throw new Error("onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive");
+  if (
+    onSubmit !== undefined &&
+    (onUpdate !== undefined || onUpdatePermissive !== undefined)
+  ) {
+    throw new Error(
+      "onSubmit cannot be defined at the same time with onUpdate or onUpdatePermissive",
+    );
   }
 
   const handlClose = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(false);
     }
     onClose?.();
   };
 
   const handleDoubleClick = () => {
-    if (onSubmit !== undefined) {
+    if (onUpdate !== undefined) {
       setIsEditing(true);
     }
   };
@@ -64,6 +69,7 @@ export const EventForm: React.FC<Props> = ({
       onUpdate={onUpdatePermissive}
       onClose={handlClose}
       onDoubleClick={handleDoubleClick}
+      editModeEnabled={onUpdate !== undefined}
       exitButton={exitButton || <></>}
       children={children}
       style={style}

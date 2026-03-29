@@ -62,6 +62,7 @@ export function BaseForm<T extends FieldValues>({
         }
       }
       onUpdate(dirtyValues);
+      reset(data);
     } else if (onSubmit) {
       onSubmit(data);
     }

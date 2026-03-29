@@ -34,6 +34,7 @@ interface Props extends PropsWithChildren {
   onDoubleClick: () => void;
   exitButton?: React.ReactNode;
   style?: CSSProperties;
+  editModeEnabled: boolean;
 }
 
 export const StaticForm: React.FC<Props> = ({
@@ -45,6 +46,7 @@ export const StaticForm: React.FC<Props> = ({
   exitButton,
   children,
   style,
+  editModeEnabled,
 }) => {
   const { t } = useTranslation();
   const [attributesOpen, setAttributesOpen] = useState(false);
@@ -72,7 +74,7 @@ export const StaticForm: React.FC<Props> = ({
           <Stack
             pos="relative"
             gap="xs"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: editModeEnabled ? 'pointer' : 'default' }}
             onDoubleClick={onDoubleClick}
           >
             <Group gap={4}>
@@ -127,7 +129,7 @@ export const StaticForm: React.FC<Props> = ({
                     display: "flex",
                   }}
                 >
-                  {t("components.forms.EventForm.accessLabel")}:
+                  {t("placeholder.accessLabel")}:
                 </Box>
                 <Controller
                   name="read"

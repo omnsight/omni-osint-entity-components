@@ -27,8 +27,8 @@ export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
   return (
     <Select
       leftSection={<SourceIcon source={data} />}
-      defaultValue={translatedOptions[0].value}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.icon")}
       onChange={onChange}
       data={translatedOptions}
       error={error}
@@ -37,7 +37,7 @@ export const SourceIconSelector: React.FC<SourceIconSelectorProps> = ({
 };
 
 interface SourceColorSelectorProps {
-  value?: string | null;
+  value?: string;
   onChange: (value: string | null) => void;
   error?: string;
 }
@@ -47,6 +47,7 @@ export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
   onChange,
   error,
 }) => {
+  const { t } = useTranslation();
   const colors = [
     "#ababab",
     "#0089ff",
@@ -59,8 +60,8 @@ export const SourceColorSelector: React.FC<SourceColorSelectorProps> = ({
 
   return (
     <ColorInput
-      defaultValue={colors[0]}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.color")}
       onChange={onChange}
       swatches={colors}
       error={error}
@@ -96,7 +97,7 @@ export const SourceIconSelect: React.FC<SourceIconSelectProps> = ({
         onChange={handleTypeChange}
       />
       <SourceColorSelector
-        value={String(value.attributes?.icon_color ?? "")}
+        value={value.attributes?.icon_color as string | undefined}
         onChange={handleColorChange}
       />
     </Group>

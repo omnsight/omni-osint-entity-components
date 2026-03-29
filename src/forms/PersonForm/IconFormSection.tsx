@@ -1,4 +1,4 @@
-import { Stack, Text, Group } from "@mantine/core";
+import { Group } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { type Person } from "omni-osint-crud-client";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
@@ -8,7 +8,10 @@ import {
 } from "@omnsight/osint-entity-components/icons";
 
 export const PersonIconFormSection = ({ data }: { data: Person }) => {
-  const { control } = useFormContext<Person>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<Person>();
   const { t } = useTranslation();
   const type = useWatch({ control, name: "type" });
   const iconColor = useWatch({ control, name: "attributes.icon_color" });
@@ -25,34 +28,25 @@ export const PersonIconFormSection = ({ data }: { data: Person }) => {
         name="type"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
-          <Stack gap={0}>
-            <PersonIconSelector
-              {...field}
-              data={modifiedData}
-              value={field.value}
-            />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
-          </Stack>
+        render={({ field }) => (
+          <PersonIconSelector
+            {...field}
+            data={modifiedData}
+            value={field.value}
+            error={errors.type?.message}
+          />
         )}
       />
       <Controller
         name="attributes.icon_color"
         control={control}
         rules={{ required: t("common.required") }}
-        render={({ field, fieldState: { error } }) => (
-          <Stack gap={0}>
-            <PersonColorSelector {...field} value={String(field.value)} />
-            {error?.message && (
-              <Text c="red" size="xs">
-                {error.message}
-              </Text>
-            )}
-          </Stack>
+        render={({ field }) => (
+          <PersonColorSelector
+            {...field}
+            value={field.value as string | undefined}
+            error={errors.attributes?.icon_color?.message}
+          />
         )}
       />
     </Group>
