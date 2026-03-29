@@ -4,6 +4,11 @@
     "access": "public"
   },
   "version": "0.2.6",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omnsight/omni-osint-entity-components.git",
+    "directory": "client"
+  },
   "engines": {
     "node": ">=24.0.0"
   },
