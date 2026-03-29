@@ -108,13 +108,6 @@ export const StaticForm: React.FC<Props> = ({
             }}
             onDoubleClick={onDoubleClick}
           >
-            <Group gap={4}>
-              <Text size="sm" c="dimmed">
-                {t("placeholder.type")}:
-              </Text>
-              <Text size="sm">{event.type}</Text>
-            </Group>
-
             <Group gap="xs" c="dimmed">
               <CalendarDaysIcon style={{ width: rem(18), height: rem(18) }} />
               <Text size="sm">

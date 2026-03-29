@@ -16,6 +16,7 @@ import {
   Tooltip,
   Box,
   Select,
+  Badge,
 } from "@mantine/core";
 import {
   ArrowTopRightOnSquareIcon,
@@ -110,10 +111,6 @@ export const StaticForm: React.FC<Props> = ({
           </Group>
 
           <Group gap={4}>
-            <Text size="sm">{website.type}</Text>
-          </Group>
-
-          <Group gap={4}>
             <Text size="sm">
               {website.founded_at
                 ? new Date(website.founded_at * 1000).toLocaleDateString()
@@ -129,7 +126,11 @@ export const StaticForm: React.FC<Props> = ({
             </Text>
           </Group>
 
-          <Text size="sm">{(website.tags || []).join(", ")}</Text>
+          <Group gap="xs">
+            {(website.tags || []).map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </Group>
 
           {children}
 
