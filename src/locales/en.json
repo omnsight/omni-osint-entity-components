@@ -1,4 +1,10 @@
 {
+  "access": {
+    "public": "Public",
+    "platform": "Platform User",
+    "paid": "Paid Users",
+    "private": "Private"
+  },
   "source": {
     "type": {
       "news": "News",
@@ -76,5 +82,130 @@
     "confidence": "Confidence",
     "createdDate": "Created Date",
     "updatedDate": "Updated Date"
+  },
+  "common": {
+    "error": "Error",
+    "reset": "Reset",
+    "apply": "Apply",
+    "create": "Create",
+    "entity": {
+      "Person": "Person",
+      "Organization": "Organization",
+      "Event": "Event",
+      "Website": "Website",
+      "Source": "Source"
+    },
+    "required": "This field is required",
+    "types": {
+      "text": "text",
+      "number": "number",
+      "toggle": "toggle"
+    },
+    "remove": "Remove",
+    "add": "Add Attribute",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "warning": "Warning"
+  },
+  "components": {
+    "inputs": {
+      "TimezoneSelect": {
+        "select": "Select a timezone"
+      },
+      "RangeDatePicker": {
+        "dateLimitExceeded": "Date range exceeds limit",
+        "dateLimitMessage": "Date range exceeds limit, max 1 month",
+        "dateRange": "Date Range",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "lastWeek": "Last Week",
+        "lastMonth": "Last Month",
+        "selectDateRange": "Select Date Range"
+      },
+      "CountrySelect": {
+        "select": "Select a country"
+      }
+    },
+    "forms": {
+      "WebsiteForm": {
+        "title": "Edit Website"
+      },
+      "SourceForm": {
+        "title": "Source Title",
+        "sourceDescription": "Enter source description"
+      },
+      "RelationForm": {
+        "title": "Edit Relation",
+        "namePattern": "Can only contain letters, underscores, and hyphens"
+      },
+      "PersonForm": {
+        "title": "Edit Person",
+        "name": "Name"
+      },
+      "OrganizationForm": {
+        "title": "Edit Organization",
+        "name": "Organization Name"
+      },
+      "MonitoringSourceForm": {
+        "title": "Edit Monitoring Source",
+        "name": "Source Name"
+      },
+      "InsightForm": {
+        "title": "Edit Insight"
+      },
+      "EventForm": {
+        "title": "Event Title",
+        "eventDescription": "event description",
+        "accessLabel": "Access Control",
+        "minLatitude": "Latitude cannot be less than -90",
+        "maxLatitude": "Latitude cannot be greater than 90",
+        "minLongitude": "Longitude cannot be less than -180",
+        "maxLongitude": "Longitude cannot be greater than 180",
+        "mustIncludeAdmin": "Must include admin"
+      },
+      "BaseForm": {
+        "discardChanges": "Discard Changes And Exit",
+        "unsavedChangesWarning": "Are you sure you want to discard the changes?"
+      }
+    }
+  },
+  "placeholder": {
+    "title": "Title",
+    "url": "URL",
+    "description": "Description",
+    "type": "Type",
+    "foundedDate": "Founded Date",
+    "discoveredDate": "Discovered Date",
+    "tags": "Tags",
+    "attributes": "Attributes",
+    "reliability": "Reliability",
+    "label": "Label",
+    "name": "Name",
+    "confidence": "Confidence",
+    "role": "Role",
+    "nationality": "Nationality",
+    "birthDate": "Birth Date",
+    "source": {
+      "type": "Source Type"
+    },
+    "lastReviewed": "Last Reviewed",
+    "enter": "Enter",
+    "date": "Date",
+    "location": "Location",
+    "address": "Address",
+    "locality": "Locality",
+    "subLocality": "Sub Locality (optional)",
+    "adminArea": "Administrative Area",
+    "subAdminArea": "Sub Administrative Area (optional)",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    "key": "Key",
+    "value": "Value",
+    "unknown": "Unknown",
+    "readAccess": "Read Access",
+    "writeAccess": "Write Access"
   }
 }
