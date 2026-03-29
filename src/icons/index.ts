@@ -8,3 +8,4 @@ export { SourceIcon } from './Source/Icon';
 export { SourceIconSelect, SourceColorSelector, SourceIconSelector } from './Source/Select';
 export { WebsiteIcon } from './Website/Icon';
 export { WebsiteIconSelect, WebsiteColorSelector, WebsiteIconSelector } from './Website/Select';
+export { IconMdiAnchor } from '../assets/icons/generated/mdi-anchor';

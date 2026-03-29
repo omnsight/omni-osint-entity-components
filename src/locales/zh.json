@@ -51,11 +51,14 @@
   "event": {
     "type": {
       "announcement": "公告",
+      "conference": "会议",
       "conversation": "对话",
+      "report": "报告",
       "exchange": "投资交易",
       "oil": "石油",
       "trade": "贸易",
       "supplychain-risk": "供应链风险",
+      "harbor": "港口",
       "ship": "航运",
       "truck": "陆运",
       "train": "轨道交通",
@@ -67,7 +70,21 @@
       "naval": "海军",
       "tank": "坦克",
       "infantry": "步兵",
-      "intelligence": "情报"
+      "intelligence": "情报",
+      "policy": "政策",
+      "border": "边境",
+      "election": "选举",
+      "currency": "货币",
+      "acquisition": "收购",
+      "commodity": "商品",
+      "electricity": "电力",
+      "cyber": "网络",
+      "evacuation": "疏散",
+      "civil-unrest": "社会动荡",
+      "defense": "防御",
+      "medical": "医疗",
+      "drone": "无人机",
+      "satellite": "卫星"
     },
     "title": "标题",
     "description": "描述"

@@ -51,11 +51,14 @@
   "event": {
     "type": {
       "announcement": "Announcement",
+      "conference": "Conference",
       "conversation": "Conversation",
+      "report": "Report",
       "exchange": "Exchange",
       "oil": "Oil",
       "trade": "Trade",
       "supplychain-risk": "Supply Chain Risk",
+      "harbor": "Harbor",
       "ship": "Ship",
       "truck": "Truck",
       "train": "Train",
@@ -67,7 +70,21 @@
       "naval": "Naval",
       "tank": "Tank",
       "infantry": "Infantry",
-      "intelligence": "Intelligence"
+      "intelligence": "Intelligence",
+      "policy": "Policy",
+      "border": "Border",
+      "election": "Election",
+      "currency": "Currency",
+      "acquisition": "Acquisition",
+      "commodity": "Commodity",
+      "electricity": "Electricity",
+      "cyber": "Cyber",
+      "evacuation": "Evacuation",
+      "civil-unrest": "Civil Unrest",
+      "defense": "Defense",
+      "medical": "Medical",
+      "drone": "Drone",
+      "satellite": "Satellite"
     },
     "title": "Title",
     "description": "Description"
