@@ -24,8 +24,8 @@ export const OrganizationIconSelector: React.FC<
   return (
     <Select
       leftSection={<OrganizationIcon organization={data} />}
-      defaultValue={translatedOptions[0].value}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.icon")}
       onChange={onChange}
       data={translatedOptions}
       error={error}
@@ -34,7 +34,7 @@ export const OrganizationIconSelector: React.FC<
 };
 
 interface OrganizationColorSelectorProps {
-  value?: string | null;
+  value?: string;
   onChange: (value: string | null) => void;
   error?: string;
 }
@@ -42,6 +42,7 @@ interface OrganizationColorSelectorProps {
 export const OrganizationColorSelector: React.FC<
   OrganizationColorSelectorProps
 > = ({ value, onChange, error }) => {
+  const { t } = useTranslation();
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -54,8 +55,8 @@ export const OrganizationColorSelector: React.FC<
 
   return (
     <ColorInput
-      defaultValue={colors[0]}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.color")}
       onChange={onChange}
       swatches={colors}
       error={error}
@@ -91,7 +92,7 @@ export const OrganizationIconSelect: React.FC<OrganizationIconSelectProps> = ({
         onChange={handleTypeChange}
       />
       <OrganizationColorSelector
-        value={String(value.attributes?.icon_color)}
+        value={value.attributes?.icon_color as string | undefined}
         onChange={handleColorChange}
       />
     </Group>

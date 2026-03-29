@@ -27,8 +27,8 @@ export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
   return (
     <Select
       leftSection={<EventIcon event={data} />}
-      defaultValue={translatedOptions[0].value}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.icon")}
       onChange={onChange}
       data={translatedOptions}
       error={error}
@@ -37,7 +37,7 @@ export const EventIconSelector: React.FC<EventIconSelectorProps> = ({
 };
 
 interface EventColorSelectorProps {
-  value?: string | null;
+  value?: string;
   onChange: (value: string | null) => void;
   error?: string;
 }
@@ -47,6 +47,7 @@ export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
   onChange,
   error,
 }) => {
+  const { t } = useTranslation();
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -59,8 +60,8 @@ export const EventColorSelector: React.FC<EventColorSelectorProps> = ({
 
   return (
     <ColorInput
-      defaultValue={colors[0]}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.color")}
       onChange={onChange}
       swatches={colors}
       error={error}
@@ -96,7 +97,7 @@ export const EventIconSelect: React.FC<EventIconSelectProps> = ({
         onChange={handleTypeChange}
       />
       <EventColorSelector
-        value={String(value.attributes?.icon_color)}
+        value={value.attributes?.icon_color as string | undefined}
         onChange={handleColorChange}
       />
     </Group>

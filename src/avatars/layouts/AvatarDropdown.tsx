@@ -28,7 +28,7 @@ export const AvatarDropdown: React.FC<Props> = ({ children, avatarOnOpen, avatar
           radius="xl"
           onClick={() => setOpened((o) => !o)}
         >
-          {opened ? avatarOnOpen : avatarOnClose}
+          {opened ? avatarOnClose : avatarOnOpen}
         </ActionIcon>
       </Popover.Target>
       <Popover.Dropdown

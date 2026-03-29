@@ -27,8 +27,8 @@ export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
   return (
     <Select
       leftSection={<WebsiteIcon website={data} />}
-      defaultValue={translatedOptions[0].value}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.icon")}
       onChange={onChange}
       data={translatedOptions}
       error={error}
@@ -37,7 +37,7 @@ export const WebsiteIconSelector: React.FC<WebsiteIconSelectorProps> = ({
 };
 
 interface WebsiteColorSelectorProps {
-  value?: string | null;
+  value?: string;
   onChange: (value: string | null) => void;
   error?: string;
 }
@@ -47,6 +47,7 @@ export const WebsiteColorSelector: React.FC<WebsiteColorSelectorProps> = ({
   onChange,
   error,
 }) => {
+  const { t } = useTranslation();
   const colors = [
     "#0089ff",
     "#ff0000",
@@ -59,8 +60,8 @@ export const WebsiteColorSelector: React.FC<WebsiteColorSelectorProps> = ({
 
   return (
     <ColorInput
-      defaultValue={colors[0]}
-      value={value ?? ""}
+      value={value}
+      placeholder={t("input.color")}
       onChange={onChange}
       swatches={colors}
       error={error}
@@ -78,7 +79,7 @@ export const WebsiteIconSelect: React.FC<WebsiteIconSelectProps> = ({
   onChange,
 }) => {
   const handleTypeChange = (type: string | null) => {
-    onChange({ ...value, title: type || undefined });
+    onChange({ ...value, type: type || undefined });
   };
 
   const handleColorChange = (color: string | null) => {
@@ -92,11 +93,11 @@ export const WebsiteIconSelect: React.FC<WebsiteIconSelectProps> = ({
     <Group>
       <WebsiteIconSelector
         data={value}
-        value={value.title}
+        value={value.type}
         onChange={handleTypeChange}
       />
       <WebsiteColorSelector
-        value={String(value.attributes?.icon_color)}
+        value={value.attributes?.icon_color as string | undefined}
         onChange={handleColorChange}
       />
     </Group>
