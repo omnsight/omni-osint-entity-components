@@ -1,5 +1,5 @@
 import React from "react";
-import { Group, Paper, RingProgress, Stack, Text, Title, ScrollArea } from "@mantine/core";
+import { Anchor, Group, Paper, RingProgress, Stack, Text, Title, ScrollArea } from "@mantine/core";
 import { type MonitoringSource } from "omni-monitoring-client";
 import { useTranslation } from "react-i18next";
 
@@ -43,10 +43,10 @@ export const MonitoringSourceCard: React.FC<Props> = ({
               />
             )}
           </Group>
-          {monitoringSource.type && (
-            <Text c="dimmed">
-              {monitoringSource.type || t("monitoringSource.type")}
-            </Text>
+          {monitoringSource.url && (
+            <Anchor href={monitoringSource.url} target="_blank" fz="sm">
+              {monitoringSource.url}
+            </Anchor>
           )}
           <ScrollArea h={50} type="auto" offsetScrollbars>
             <Text>
