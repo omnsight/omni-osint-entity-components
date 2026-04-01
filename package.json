@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.2.9",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/omnsight/omni-osint-entity-components.git",
